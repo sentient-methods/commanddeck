@@ -1,95 +1,92 @@
 'use client';
 
 import React from 'react';
-import { MessageSquareQuote, Star, Heart, Cake, ThumbsUp } from 'lucide-react';
+import { MessageSquareQuote, Radio } from 'lucide-react';
 
-interface Testimonial {
+interface Transmission {
   author: string;
   headline: string;
-  quote: string;
-  tag: string;
+  body: string;
+  classification: string;
   context: string;
 }
 
-const TESTIMONIALS: Testimonial[] = [
+const TRANSMISSIONS: Transmission[] = [
   {
     author: 'Cherri Hanks',
     headline: 'Awesome!',
-    quote:
+    body:
       'I needed something inexpensive and fun to do with six boys ages 4-10. Laser tag at Command Deck was the perfect choice. The boys loved it! I was able to relax and look around in a nearby store. The employee was helpful and enthusiastic with the boys. The boys are already begging to go back. 5 Stars!!!!',
-    tag: 'Mom’s Moment of Zen',
-    context: 'Six boys ages 4 to 10',
+    classification: 'PARENT OVERSIGHT // ZEN',
+    context: 'Six boys (ages 4 - 10)',
   },
   {
     author: 'Kelly Walker',
     headline: 'Best Birthday Party Ever!',
-    quote:
+    body:
       'My son had his 9th birthday party yesterday afternoon at Command Deck. I bought the $150 party package. The 7 boys played laser tag for an hour, then we had cake and pizza inside the laser tag course with the lights on, then the boys split up and some played more laser tag and some played XBox on the giant TV screen for almost another hour. They all had a great time and we really liked the Command Deck employee that took care of us. According to my son it was his best birthday party ever!',
-    tag: '9th Birthday Squad',
+    classification: 'EVENT LOG // 9TH BIRTHDAY',
     context: 'In-Course Pizza & Xbox Party',
   },
   {
     author: 'Lori Beals',
     headline: 'So Helpful!',
-    quote:
+    body:
       'Nels welcomed us at check in and explained everything so well and had A LOT of patience. We had my son’s 8th birthday party there and it was so much fun for the kids. Nels was so helpful and kind with us. He even played with my 5 year-old (who was getting tired and ornery) showing him some of his tricks. He accommodated us to have the room I reserved. Great party and will definitely be back!',
-    tag: 'Referee Mentorship',
-    context: 'Mentioning Referee Nels',
+    classification: 'CREW LOG // STAFF COMMENDATION',
+    context: 'Commending Referee Nels',
   },
 ];
 
 export default function TestimonialArchive() {
   return (
-    <section id="stories" className="py-20 bg-deck-900/60 border-t border-b border-deck-800 relative">
+    <section id="stories" className="py-24 bg-hull-950/80 border-t border-b border-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-deck-850 border border-deck-700 text-xs font-mono text-tactical-sky mb-3">
-            <MessageSquareQuote className="w-3.5 h-3.5" />
-            <span>COMMUNITY TESTIMONIALS</span>
+        <div className="max-w-3xl mb-16">
+          <div className="telemetry-chip mb-3">
+            <span>COMMUNICATIONS LOG // SECTION 05</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-            Memories From the Concourse
+            Transmissions From the Concourse
           </h2>
-          <p className="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
-            Preserved verbatim from the original website. These verified reviews reflect the genuine family trust,
-            patient staff, and unforgettable birthday memories created in Provo.
+          <p className="mt-4 text-titanium-300 text-sm sm:text-base leading-relaxed">
+            Preserved verbatim from the original website origin. These verified community transmissions capture the
+            genuine trust, patient staff, and family celebrations created at Provo Towne Centre.
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {TESTIMONIALS.map((t) => (
+        {/* Transmissions Cards Grid */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl">
+          {TRANSMISSIONS.map((t) => (
             <div
               key={t.author}
-              className="p-6 sm:p-8 rounded-2xl bg-deck-950 border border-deck-800 flex flex-col justify-between hover:border-deck-700 transition-colors shadow-lg"
+              className="p-8 rounded-2xl bg-hull-900/60 border border-white/5 hover:border-white/15 transition-all flex flex-col justify-between shadow-xl"
             >
               <div>
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <div className="flex items-center text-tactical-amber">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-tactical-amber" />
-                    ))}
-                  </div>
-                  <span className="font-mono text-[11px] text-tactical-cyan px-2 py-0.5 rounded bg-deck-900 border border-deck-800">
-                    {t.tag}
+                <div className="flex items-center justify-between gap-2 mb-6 pb-3 border-b border-white/5">
+                  <span className="font-mono text-[10px] text-phaser-cyan tracking-[0.2em] uppercase font-semibold">
+                    {t.classification}
                   </span>
+                  <Radio className="w-3.5 h-3.5 text-titanium-400" />
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-3">&ldquo;{t.headline}&rdquo;</h3>
+                <h3 className="text-lg font-bold text-white mb-3 tracking-tight">&ldquo;{t.headline}&rdquo;</h3>
 
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6 italic">
-                  &ldquo;{t.quote}&rdquo;
+                <p className="text-titanium-300 text-xs sm:text-sm leading-relaxed mb-6 italic">
+                  &ldquo;{t.body}&rdquo;
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-deck-850 flex items-center justify-between">
+              <div className="pt-4 border-t border-white/5 flex items-center justify-between">
                 <div>
-                  <div className="font-bold text-slate-200 text-xs">{t.author}</div>
-                  <div className="text-[11px] font-mono text-slate-400">{t.context}</div>
+                  <div className="font-bold text-white text-xs">{t.author}</div>
+                  <div className="text-[10px] font-mono text-titanium-400 tracking-wider uppercase mt-0.5">
+                    {t.context}
+                  </div>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-deck-900 border border-deck-800 flex items-center justify-center text-tactical-amber">
-                  <Heart className="w-3.5 h-3.5" />
+                <div className="font-mono text-[10px] text-phaser-cyan uppercase tracking-widest">
+                  VERIFIED
                 </div>
               </div>
             </div>

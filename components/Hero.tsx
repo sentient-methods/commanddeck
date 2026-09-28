@@ -2,116 +2,130 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { ShieldCheck, Users, Eye, Sparkles, MapPin, ChevronRight } from 'lucide-react';
+import { ChevronRight, ExternalLink, Shield, Crosshair, Users, Activity } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative pt-12 pb-20 overflow-hidden bg-tactical-grid">
-      {/* Ambient background glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-tactical-cyan/10 blur-[120px] pointer-events-none rounded-full"></div>
-      <div className="absolute top-1/3 left-1/3 w-[300px] h-[200px] bg-tactical-amber/10 blur-[90px] pointer-events-none rounded-full"></div>
+    <section id="hero" className="relative pt-16 pb-24 overflow-hidden bridge-grid">
+      {/* Cinematic Horizontal Anamorphic Lens Flare */}
+      <div className="absolute top-0 left-0 right-0 flare-divider"></div>
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-phaser-cyan/5 blur-[140px] pointer-events-none rounded-full"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Memorial Badge */}
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-deck-900 border border-deck-700 text-xs font-mono text-slate-300 shadow-lg">
-            <span className="w-2 h-2 rounded-full bg-tactical-cyan animate-pulse"></span>
-            <span className="text-tactical-cyan font-semibold">HISTORICAL MEMORIAL ARCHIVE</span>
-            <span className="text-slate-600">/</span>
-            <span>PROVO, UTAH</span>
+        {/* Telemetry Status Bar */}
+        <div className="flex justify-center mb-8">
+          <div className="telemetry-chip">
+            <span className="w-1.5 h-1.5 rounded-full bg-phaser-cyan animate-pulse"></span>
+            <span>DECOMMISSIONED FACILITY ARCHIVE // STARDATE 2012 - 2020</span>
           </div>
         </div>
 
-        {/* Central Logo Display */}
+        {/* Central Logo & Cinematic Masthead */}
         <div className="flex flex-col items-center text-center">
-          <div className="relative max-w-xl w-full h-32 sm:h-44 mb-4 flex items-center justify-center">
+          <div className="relative max-w-lg w-full h-28 sm:h-36 mb-6 flex items-center justify-center">
             <Image
               src="/images/glowcd-812x335.png"
-              alt="Command Deck Logo"
-              width={650}
-              height={268}
+              alt="Command Deck Insignia"
+              width={580}
+              height={240}
               priority
-              className="object-contain filter drop-shadow-[0_0_20px_rgba(255,255,255,0.25)]"
+              className="object-contain filter drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]"
             />
           </div>
 
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-white max-w-4xl">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl leading-[1.1]">
             The Close Quarters Battle Academy at&nbsp;
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-tactical-sky to-tactical-cyan">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-phaser-sky to-phaser-cyan">
               Provo Towne Centre
             </span>
           </h1>
 
-          <p className="mt-5 text-base sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
-            Located on the lower level beneath Cinemark 16, Command Deck challenged the dark, chaotic laser tag
-            arcade stereotype. We built an intimate, family-friendly tactical training facility featuring clean starship
-            corridors, private squad play, and live referee mentorship.
+          <p className="mt-6 text-sm sm:text-base lg:text-lg text-titanium-300 max-w-2xl font-normal leading-relaxed">
+            Constructed below Cinemark 16, Command Deck challenged the noisy, dark laser tag arcade stereotype. We
+            engineered an intimate tactical environment focused on private squads, starship corridor CQB, and
+            active referee mentorship.
           </p>
 
-          {/* Quick CTA Actions */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          {/* Console Action Controls */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#blueprint"
-              className="px-6 py-3 rounded bg-deck-850 hover:bg-deck-800 text-slate-100 font-mono text-xs sm:text-sm font-semibold border border-deck-600 hover:border-tactical-cyan transition-all shadow-md flex items-center gap-2 group"
+              className="px-6 py-3 rounded-lg bg-hull-900/90 hover:bg-hull-850 text-white font-mono text-xs uppercase tracking-wider border border-white/10 hover:border-phaser-cyan/50 transition-all flex items-center gap-2.5 shadow-lg group"
             >
               <span>Explore Arena Blueprint</span>
-              <ChevronRight className="w-4 h-4 text-tactical-cyan group-hover:translate-x-1 transition-transform" />
+              <ChevronRight className="w-3.5 h-3.5 text-phaser-cyan group-hover:translate-x-0.5 transition-transform" />
             </a>
 
             <a
               href="#gallery"
-              className="px-6 py-3 rounded bg-deck-900 hover:bg-deck-850 text-slate-300 hover:text-white font-mono text-xs sm:text-sm border border-deck-700 transition-all flex items-center gap-2"
+              className="px-6 py-3 rounded-lg bg-void/60 hover:bg-hull-900 text-titanium-300 hover:text-white font-mono text-xs uppercase tracking-wider border border-white/5 hover:border-white/20 transition-all flex items-center gap-2"
             >
-              <span>View Archival Photos</span>
+              <span>Flight Log &amp; Photos</span>
             </a>
 
             <a
               href="https://frontlinetag.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded bg-gradient-to-r from-tactical-amber to-tactical-gold hover:from-amber-400 hover:to-yellow-400 text-deck-950 font-mono text-xs sm:text-sm font-bold transition-all shadow-md flex items-center gap-2"
+              className="px-6 py-3 rounded-lg bg-phaser-cyan text-void font-mono text-xs font-bold uppercase tracking-wider hover:bg-phaser-sky transition-all flex items-center gap-2 shadow-[0_0_25px_-5px_rgba(0,229,255,0.4)]"
             >
-              <span>Book Frontline TAG Mobile</span>
-              <ChevronRight className="w-4 h-4 text-deck-950" />
+              <span>Book Frontline TAG</span>
+              <ExternalLink className="w-3.5 h-3.5 text-void" />
             </a>
           </div>
 
-          {/* Authentic Core Pillars / Quick Badges */}
-          <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl">
-            <div className="p-4 rounded-lg bg-deck-900/80 border border-deck-800 backdrop-blur-sm text-left">
-              <div className="flex items-center gap-2 text-tactical-cyan mb-1.5 font-mono text-xs font-semibold">
-                <Users className="w-4 h-4" />
-                <span>PRIVATE SQUADS</span>
+          {/* Subtly Framed Telemetry Instrument Strip */}
+          <div className="mt-16 w-full max-w-5xl grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+            <div className="p-5 bg-hull-950/90 backdrop-blur-md text-left flex flex-col justify-between">
+              <div>
+                <div className="text-[10px] font-mono tracking-[0.2em] text-phaser-cyan uppercase mb-2 flex items-center gap-1.5">
+                  <Users className="w-3 h-3" />
+                  <span>SPEC 01 // SQUADS</span>
+                </div>
+                <div className="text-white font-bold text-sm tracking-tight">2 to 8 Operators</div>
+                <div className="text-titanium-400 text-xs mt-1 leading-relaxed">
+                  Strict private engagements. Never combined with strangers.
+                </div>
               </div>
-              <div className="text-slate-100 font-bold text-sm">2 to 8 Players Max</div>
-              <div className="text-slate-400 text-xs mt-1">Never combined with strangers or older crowds.</div>
             </div>
 
-            <div className="p-4 rounded-lg bg-deck-900/80 border border-deck-800 backdrop-blur-sm text-left">
-              <div className="flex items-center gap-2 text-tactical-amber mb-1.5 font-mono text-xs font-semibold">
-                <ShieldCheck className="w-4 h-4" />
-                <span>SAFETY FIRST</span>
+            <div className="p-5 bg-hull-950/90 backdrop-blur-md text-left flex flex-col justify-between">
+              <div>
+                <div className="text-[10px] font-mono tracking-[0.2em] text-phaser-cyan uppercase mb-2 flex items-center gap-1.5">
+                  <Shield className="w-3 h-3" />
+                  <span>SPEC 02 // HULL</span>
+                </div>
+                <div className="text-white font-bold text-sm tracking-tight">Impact Sway Barriers</div>
+                <div className="text-titanium-400 text-xs mt-1 leading-relaxed">
+                  Diamond-plate steel treads and pop-out collision zones.
+                </div>
               </div>
-              <div className="text-slate-100 font-bold text-sm">Sway &amp; Crush Barriers</div>
-              <div className="text-slate-400 text-xs mt-1">Industrial foam walls and pop-out collision zones.</div>
             </div>
 
-            <div className="p-4 rounded-lg bg-deck-900/80 border border-deck-800 backdrop-blur-sm text-left">
-              <div className="flex items-center gap-2 text-tactical-sky mb-1.5 font-mono text-xs font-semibold">
-                <Eye className="w-4 h-4" />
-                <span>LIVE REFEREES</span>
+            <div className="p-5 bg-hull-950/90 backdrop-blur-md text-left flex flex-col justify-between">
+              <div>
+                <div className="text-[10px] font-mono tracking-[0.2em] text-phaser-cyan uppercase mb-2 flex items-center gap-1.5">
+                  <Crosshair className="w-3 h-3" />
+                  <span>SPEC 03 // TELEMETRY</span>
+                </div>
+                <div className="text-white font-bold text-sm tracking-tight">Weapon HUDs &amp; RFID</div>
+                <div className="text-titanium-400 text-xs mt-1 leading-relaxed">
+                  Real-time weapon displays and active ammo cache dumps.
+                </div>
               </div>
-              <div className="text-slate-100 font-bold text-sm">No Canned Videos</div>
-              <div className="text-slate-400 text-xs mt-1">Trained staff in the arena coaching every round.</div>
             </div>
 
-            <div className="p-4 rounded-lg bg-deck-900/80 border border-deck-800 backdrop-blur-sm text-left">
-              <div className="flex items-center gap-2 text-slate-300 mb-1.5 font-mono text-xs font-semibold">
-                <MapPin className="w-4 h-4 text-tactical-cyan" />
-                <span>LOCATION</span>
+            <div className="p-5 bg-hull-950/90 backdrop-blur-md text-left flex flex-col justify-between">
+              <div>
+                <div className="text-[10px] font-mono tracking-[0.2em] text-phaser-cyan uppercase mb-2 flex items-center gap-1.5">
+                  <Activity className="w-3 h-3" />
+                  <span>SPEC 04 // COMMAND</span>
+                </div>
+                <div className="text-white font-bold text-sm tracking-tight">100% Live Referees</div>
+                <div className="text-titanium-400 text-xs mt-1 leading-relaxed">
+                  Trained mentors in the course coaching and refereeing.
+                </div>
               </div>
-              <div className="text-slate-100 font-bold text-sm">Provo Towne Centre</div>
-              <div className="text-slate-400 text-xs mt-1">Ground floor concourse, below Cinemark 16.</div>
             </div>
           </div>
         </div>

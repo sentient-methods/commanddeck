@@ -2,18 +2,18 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Camera, X, ZoomIn, Calendar, MapPin } from 'lucide-react';
+import { Camera, X, ZoomIn, Calendar, MapPin, Eye } from 'lucide-react';
 
-interface ArchivalPhoto {
+interface ArchivalRecord {
   id: string;
   src: string;
   title: string;
-  category: 'storefront' | 'firefights' | 'parties' | 'gear';
+  category: 'storefront' | 'firefights' | 'parties' | 'hardware';
   date: string;
   caption: string;
 }
 
-const PHOTOS: ArchivalPhoto[] = [
+const RECORDS: ArchivalRecord[] = [
   {
     id: 'storefront-facade',
     src: '/images/Picture63-244x173.jpg',
@@ -81,7 +81,7 @@ const PHOTOS: ArchivalPhoto[] = [
     id: 'referee-briefing',
     src: '/images/Picture8-244x173.jpg',
     title: 'Live Referee Touchscreen Briefing',
-    category: 'gear',
+    category: 'hardware',
     date: 'circa 2015',
     caption:
       'A Command Deck referee coaching young players through game rules and tactical objectives on the touch-screen briefing console.',
@@ -90,127 +90,127 @@ const PHOTOS: ArchivalPhoto[] = [
     id: 'academy-seal',
     src: '/images/MB_Seal.JPG',
     title: 'Command Deck Crew Academy Seal',
-    category: 'gear',
+    category: 'hardware',
     date: 'circa 2013',
     caption: 'Official emblem and insignia used for Command Deck Crew passes and academy certification.',
   },
 ];
 
 export default function HistoricalGallery() {
-  const [selectedPhoto, setSelectedPhoto] = useState<ArchivalPhoto | null>(null);
+  const [selectedRecord, setSelectedRecord] = useState<ArchivalRecord | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>('all');
 
-  const filteredPhotos =
-    activeFilter === 'all' ? PHOTOS : PHOTOS.filter((p) => p.category === activeFilter);
+  const filteredRecords =
+    activeFilter === 'all' ? RECORDS : RECORDS.filter((r) => r.category === activeFilter);
 
   return (
-    <section id="gallery" className="py-20 bg-deck-900/40 border-t border-b border-deck-800 relative">
+    <section id="gallery" className="py-24 bg-hull-950/60 border-t border-b border-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-deck-850 border border-deck-700 text-xs font-mono text-tactical-amber mb-3">
-            <Camera className="w-3.5 h-3.5" />
-            <span>PRIMARY RECONNAISSANCE</span>
+        <div className="max-w-3xl mb-14">
+          <div className="telemetry-chip mb-3">
+            <span>PHOTOGRAPHIC MANIFEST // SECTION 03</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-            Archival Photo Exhibition
+            Visual Flight Log &amp; Archive
           </h2>
-          <p className="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
-            Rescued directly from the original Turbify web origin. These images document the real facility, its
-            starship corridors, and the community that made it special.
+          <p className="mt-4 text-titanium-300 text-sm sm:text-base leading-relaxed">
+            Preserved directly from the original web origin. These high-resolution photographs document the physical
+            storefront, diamond-plate corridors, and community gatherings at Provo Towne Centre.
           </p>
         </div>
 
-        {/* Category Filter Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10 text-xs font-mono">
+        {/* Minimalist Filter Navigation */}
+        <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/5 text-xs font-mono">
           <button
             onClick={() => setActiveFilter('all')}
-            className={`px-3.5 py-1.5 rounded-full border transition-all ${
+            className={`px-3.5 py-1.5 rounded-lg border transition-all ${
               activeFilter === 'all'
-                ? 'bg-deck-800 text-tactical-cyan border-tactical-cyan'
-                : 'bg-deck-900 text-slate-400 border-deck-800 hover:text-slate-200'
+                ? 'bg-hull-900 text-phaser-cyan border-phaser-cyan'
+                : 'bg-hull-950/60 text-titanium-400 border-white/5 hover:text-white hover:border-white/10'
             }`}
           >
-            All Archival Assets ({PHOTOS.length})
+            All Archival Records ({RECORDS.length})
           </button>
           <button
             onClick={() => setActiveFilter('storefront')}
-            className={`px-3.5 py-1.5 rounded-full border transition-all ${
+            className={`px-3.5 py-1.5 rounded-lg border transition-all ${
               activeFilter === 'storefront'
-                ? 'bg-deck-800 text-tactical-cyan border-tactical-cyan'
-                : 'bg-deck-900 text-slate-400 border-deck-800 hover:text-slate-200'
+                ? 'bg-hull-900 text-phaser-cyan border-phaser-cyan'
+                : 'bg-hull-950/60 text-titanium-400 border-white/5 hover:text-white hover:border-white/10'
             }`}
           >
             Storefront &amp; Concourse
           </button>
           <button
             onClick={() => setActiveFilter('firefights')}
-            className={`px-3.5 py-1.5 rounded-full border transition-all ${
+            className={`px-3.5 py-1.5 rounded-lg border transition-all ${
               activeFilter === 'firefights'
-                ? 'bg-deck-800 text-tactical-cyan border-tactical-cyan'
-                : 'bg-deck-900 text-slate-400 border-deck-800 hover:text-slate-200'
+                ? 'bg-hull-900 text-phaser-cyan border-phaser-cyan'
+                : 'bg-hull-950/60 text-titanium-400 border-white/5 hover:text-white hover:border-white/10'
             }`}
           >
-            Arena Firefights
+            Arena Engagements
           </button>
           <button
             onClick={() => setActiveFilter('parties')}
-            className={`px-3.5 py-1.5 rounded-full border transition-all ${
+            className={`px-3.5 py-1.5 rounded-lg border transition-all ${
               activeFilter === 'parties'
-                ? 'bg-deck-800 text-tactical-cyan border-tactical-cyan'
-                : 'bg-deck-900 text-slate-400 border-deck-800 hover:text-slate-200'
+                ? 'bg-hull-900 text-phaser-cyan border-phaser-cyan'
+                : 'bg-hull-950/60 text-titanium-400 border-white/5 hover:text-white hover:border-white/10'
             }`}
           >
             Birthday Squads
           </button>
           <button
-            onClick={() => setActiveFilter('gear')}
-            className={`px-3.5 py-1.5 rounded-full border transition-all ${
-              activeFilter === 'gear'
-                ? 'bg-deck-800 text-tactical-cyan border-tactical-cyan'
-                : 'bg-deck-900 text-slate-400 border-deck-800 hover:text-slate-200'
+            onClick={() => setActiveFilter('hardware')}
+            className={`px-3.5 py-1.5 rounded-lg border transition-all ${
+              activeFilter === 'hardware'
+                ? 'bg-hull-900 text-phaser-cyan border-phaser-cyan'
+                : 'bg-hull-950/60 text-titanium-400 border-white/5 hover:text-white hover:border-white/10'
             }`}
           >
-            Gear &amp; Briefings
+            Hardware &amp; Briefings
           </button>
         </div>
 
-        {/* Photo Grid */}
+        {/* Gallery Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPhotos.map((photo) => (
+          {filteredRecords.map((record) => (
             <div
-              key={photo.id}
-              onClick={() => setSelectedPhoto(photo)}
-              className="group cursor-pointer rounded-xl bg-deck-950 border border-deck-800 hover:border-tactical-cyan/60 overflow-hidden transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 flex flex-col"
+              key={record.id}
+              onClick={() => setSelectedRecord(record)}
+              className="group cursor-pointer rounded-xl bg-hull-950 border border-white/10 hover:border-phaser-cyan/50 overflow-hidden transition-all duration-300 shadow-lg hover:shadow-2xl flex flex-col"
             >
-              <div className="relative w-full h-56 bg-deck-900 overflow-hidden">
+              <div className="relative w-full h-56 bg-void overflow-hidden">
                 <Image
-                  src={photo.src}
-                  alt={photo.title}
+                  src={record.src}
+                  alt={record.title}
                   fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-deck-950/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                <div className="absolute top-3 right-3 p-1.5 rounded bg-deck-950/80 backdrop-blur-sm border border-deck-700 text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ZoomIn className="w-4 h-4 text-tactical-cyan" />
+                <div className="absolute inset-0 bg-gradient-to-t from-hull-950 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity"></div>
+                <div className="absolute top-3 right-3 p-1.5 rounded bg-hull-950/80 backdrop-blur-md border border-white/10 text-titanium-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ZoomIn className="w-3.5 h-3.5 text-phaser-cyan" />
                 </div>
               </div>
-              <div className="p-4 flex-1 flex flex-col justify-between">
+              <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between text-[11px] font-mono text-tactical-amber mb-1">
-                    <span>{photo.date}</span>
-                    <span className="uppercase text-slate-400">{photo.category}</span>
+                  <div className="flex items-center justify-between text-[10px] font-mono text-phaser-cyan mb-2 tracking-widest uppercase">
+                    <span>{record.date}</span>
+                    <span className="text-titanium-400">{record.category}</span>
                   </div>
-                  <h3 className="font-bold text-white text-sm group-hover:text-tactical-cyan transition-colors">
-                    {photo.title}
+                  <h3 className="font-bold text-white text-sm group-hover:text-phaser-cyan transition-colors tracking-tight">
+                    {record.title}
                   </h3>
-                  <p className="text-slate-400 text-xs mt-2 line-clamp-2 leading-relaxed">
-                    {photo.caption}
+                  <p className="text-titanium-400 text-xs mt-2 line-clamp-2 leading-relaxed">
+                    {record.caption}
                   </p>
                 </div>
-                <div className="mt-3 pt-3 border-t border-deck-900 flex items-center justify-between text-[10px] font-mono text-slate-500">
-                  <span>CLICK TO EXPAND</span>
-                  <span>ORIGINAL PTC ARCHIVE</span>
+                <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-titanium-400 tracking-wider uppercase">
+                  <span>INSPECT RECORD</span>
+                  <span>VERIFIED PTC</span>
                 </div>
               </div>
             </div>
@@ -218,56 +218,56 @@ export default function HistoricalGallery() {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
-      {selectedPhoto && (
+      {/* Lightbox Optical Viewer Modal */}
+      {selectedRecord && (
         <div
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
-          onClick={() => setSelectedPhoto(null)}
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setSelectedRecord(null)}
         >
           <div
-            className="relative max-w-4xl w-full rounded-2xl bg-deck-900 border border-deck-700 overflow-hidden shadow-2xl"
+            className="relative max-w-4xl w-full rounded-2xl bg-hull-950 border border-white/15 overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="px-6 py-4 bg-deck-950 border-b border-deck-800 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-tactical-cyan"></span>
-                <span className="font-mono text-xs text-slate-300 tracking-wider uppercase font-semibold">
-                  {selectedPhoto.title}
+            <div className="px-6 py-4 bg-void/90 border-b border-white/10 flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-phaser-cyan animate-pulse"></span>
+                <span className="font-mono text-xs text-white tracking-widest uppercase font-semibold">
+                  {selectedRecord.title}
                 </span>
               </div>
               <button
-                onClick={() => setSelectedPhoto(null)}
-                className="p-1.5 rounded-lg bg-deck-900 hover:bg-deck-800 text-slate-400 hover:text-white transition-colors"
+                onClick={() => setSelectedRecord(null)}
+                className="p-1 rounded-lg bg-hull-900 hover:bg-hull-850 text-titanium-400 hover:text-white transition-colors"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Modal Image */}
-            <div className="relative w-full h-80 sm:h-[480px] bg-black">
+            {/* Modal Image Display */}
+            <div className="relative w-full h-80 sm:h-[480px] bg-void">
               <Image
-                src={selectedPhoto.src}
-                alt={selectedPhoto.title}
+                src={selectedRecord.src}
+                alt={selectedRecord.title}
                 fill
                 className="object-contain"
               />
             </div>
 
-            {/* Modal Caption */}
-            <div className="p-6 bg-deck-950 border-t border-deck-800">
-              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400 mb-2">
-                <div className="flex items-center gap-1 text-tactical-amber">
+            {/* Modal Telemetry Caption */}
+            <div className="p-6 bg-hull-950 border-t border-white/10">
+              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-titanium-400 mb-3 tracking-wider">
+                <div className="flex items-center gap-1.5 text-phaser-cyan">
                   <Calendar className="w-3.5 h-3.5" />
-                  <span>{selectedPhoto.date}</span>
+                  <span>{selectedRecord.date}</span>
                 </div>
-                <div className="flex items-center gap-1 text-tactical-cyan">
-                  <MapPin className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-1.5 text-titanium-300">
+                  <MapPin className="w-3.5 h-3.5 text-phaser-cyan" />
                   <span>Provo Towne Centre (Lower Level)</span>
                 </div>
               </div>
-              <p className="text-slate-200 text-sm leading-relaxed">{selectedPhoto.caption}</p>
+              <p className="text-titanium-200 text-sm leading-relaxed">{selectedRecord.caption}</p>
             </div>
           </div>
         </div>

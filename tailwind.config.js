@@ -8,21 +8,36 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        deck: {
-          950: '#070a10',
-          900: '#0c121e',
-          850: '#101826',
-          800: '#141f32',
-          700: '#1e2e48',
-          600: '#2c4266',
+        void: '#020408',
+        hull: {
+          950: '#04070e',
+          900: '#070c16',
+          850: '#0b1320',
+          800: '#101a2c',
+          700: '#18253d',
+          600: '#233452',
         },
-        tactical: {
-          amber: '#f59e0b',
-          gold: '#eab308',
-          cyan: '#06b6d4',
+        titanium: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+        },
+        phaser: {
+          cyan: '#00e5ff',
           sky: '#38bdf8',
-          steel: '#94a3b8',
+          blue: '#0284c7',
         },
+        warp: {
+          gold: '#f59e0b',
+          amber: '#d97706',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
     },
   },
