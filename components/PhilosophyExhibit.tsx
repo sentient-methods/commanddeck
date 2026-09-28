@@ -1,177 +1,189 @@
 'use client';
 
 import React from 'react';
-import { ShieldCheck, Cpu, ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
+import { ShieldCheck, Heart, MapPin, Smile, CheckCircle2 } from 'lucide-react';
 
 export default function PhilosophyExhibit() {
   return (
-    <section id="philosophy" className="py-24 bg-hull-950/80 border-t border-b border-white/5 relative">
+    <section id="philosophy" className="py-20 bg-slate-50/70 border-b border-slate-200 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
-          <div className="telemetry-chip mb-3">
-            <span>FACILITY DOCTRINE // SECTION 01</span>
+          <div className="status-pill mb-3">
+            <span>ABOUT COMMAND DECK // FACILITY OVERVIEW</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-            The Anti-Arcade Doctrine
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Clean, Safe, and Family-Friendly
           </h2>
-          <p className="mt-4 text-titanium-300 text-sm sm:text-base leading-relaxed">
-            Conventional laser tag operates on volume: herds of thirty strangers navigating dark, murky rooms with
-            plastic phasers. Command Deck abandoned every one of those tropes to engineer a small-group Close Quarters
-            Battle discipline.
+          <p className="mt-3 text-slate-600 text-base leading-relaxed">
+            Our arena was designed from the ground up to be different from traditional arcades: bright, spotlessly clean,
+            and built for genuine safety, comfort, and fun for players of all ages.
           </p>
         </div>
 
-        {/* Clean Architectural Comparison: Archetype vs Standard */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          {/* Left: The Conventional Archetype */}
-          <div className="p-8 rounded-2xl bg-hull-900/40 border border-white/5 relative flex flex-col justify-between">
-            <div>
-              <div className="font-mono text-[11px] tracking-[0.2em] uppercase text-titanium-400 mb-6 pb-3 border-b border-white/5">
-                The Conventional Archetype // 90s Arcades
-              </div>
-              <div className="space-y-6 text-xs sm:text-sm text-titanium-400">
-                <div>
-                  <h4 className="font-bold text-titanium-200 mb-1">Chaotic 30-Player Free-for-Alls</h4>
-                  <p className="leading-relaxed">
-                    Unchecked herds of random strangers thrown together in the dark, leading to little kids getting
-                    trampled by older teenagers.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-titanium-200 mb-1">Murky Blacklight Disorientation</h4>
-                  <p className="leading-relaxed">
-                    Heavy smoke machines and Day-Glo spray paint obscuring floor obstacles and creating tripping
-                    hazards.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-titanium-200 mb-1">Bulky Plastic Harnesses</h4>
-                  <p className="leading-relaxed">
-                    Heavy, cumbersome chest plates tethered by coiled telephone cords, emitting generic synthetic
-                    arcade chimes.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-titanium-200 mb-1">Canned Television Briefings</h4>
-                  <p className="leading-relaxed">
-                    Automated, impersonal video loops playing to an empty room without safety oversight or rule
-                    enforcement.
-                  </p>
-                </div>
-              </div>
+        {/* 4 Authentic Core Feature Blocks */}
+        <div className="space-y-12">
+          {/* Feature 1: Easy to find */}
+          <div className="studio-panel rounded-2xl p-6 sm:p-8 grid md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-4 relative h-56 sm:h-64 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-xs">
+              <Image
+                src="/images/PTC-287x186.jpg"
+                alt="Provo Towne Centre Exterior"
+                fill
+                className="object-cover"
+              />
             </div>
-            <div className="mt-8 pt-4 border-t border-white/5 font-mono text-[10px] text-titanium-400 uppercase tracking-widest">
-              DISCARDED CONVENTIONAL PARADIGM
-            </div>
-          </div>
-
-          {/* Right: The Command Deck Standard */}
-          <div className="p-8 rounded-2xl bg-hull-900/90 border border-phaser-cyan/30 relative flex flex-col justify-between shadow-2xl">
-            <div>
-              <div className="font-mono text-[11px] tracking-[0.2em] uppercase text-phaser-cyan mb-6 pb-3 border-b border-phaser-cyan/20 flex items-center justify-between">
-                <span>The Command Deck Standard // CQB Academy</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-phaser-cyan animate-pulse"></span>
+            <div className="md:col-span-8">
+              <div className="flex items-center gap-2 text-sky-700 text-xs font-mono font-bold uppercase tracking-wider mb-2">
+                <MapPin className="w-4 h-4" />
+                <span>Prime Mall Location</span>
               </div>
-              <div className="space-y-6 text-xs sm:text-sm text-titanium-200">
-                <div>
-                  <h4 className="font-bold text-white mb-1">Strict Private Squads (2 to 8 Operators)</h4>
-                  <p className="text-titanium-300 leading-relaxed">
-                    Never combined with strangers. You decided who entered the arena with your family, birthday squad, or
-                    date.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-white mb-1">Starship Industrial Hull Engineering</h4>
-                  <p className="text-titanium-300 leading-relaxed">
-                    Black diamond-plate steel flooring, metallic truss beams, sway barriers with pop-out crush zones, and
-                    clean task lighting.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-white mb-1">Tactical Weapon HUDs &amp; Active RFID</h4>
-                  <p className="text-titanium-300 leading-relaxed">
-                    Sleek carbines displaying real-time ammunition and health points, backed by wall-mounted RFID resupply
-                    transponders.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-white mb-1">Active Referee Mentorship</h4>
-                  <p className="text-titanium-300 leading-relaxed">
-                    Certified referees stepped inside the arena to teach tactics, encourage young players, and referee
-                    every scenario live.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="mt-8 pt-4 border-t border-white/10 font-mono text-[10px] text-phaser-cyan uppercase tracking-widest flex items-center justify-between">
-              <span>ACTIVE HISTORICAL SPECIFICATION</span>
-              <span>VERIFIED PTC ARCHIVE</span>
-            </div>
-          </div>
-        </div>
-
-        {/* 4 Architectural Framework Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="p-6 rounded-xl bg-hull-900/60 border border-white/5 hover:border-phaser-cyan/30 transition-all flex flex-col justify-between">
-            <div>
-              <div className="font-mono text-[10px] text-phaser-cyan tracking-[0.2em] uppercase mb-3">
-                PILLAR 01 // INTEGRITY
-              </div>
-              <h3 className="text-base font-bold text-white mb-2">Private Group Integrity</h3>
-              <p className="text-titanium-400 text-xs leading-relaxed">
-                Whether an 8-year-old birthday party or college students on a $1 duel date, matches were strictly
-                private.
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 tracking-tight">
+                Easy to find... Just look on the bright side!
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                No need to venture into the &ldquo;shady&rdquo; parts of town to find our arena. We are located right next
+                to the children&apos;s play area at the Provo Towne Centre in a bright, clean environment, surrounded by
+                attractions for kids and mom.
+              </p>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                No other laser tag arena lets you relax, try on a new outfit, catch a movie, visit the salon, grab a
+                bite, or take care of some holiday shopping all without ever leaving the building. It&apos;s a family fun
+                center for the entire family!
               </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-white/5 font-mono text-[10px] text-titanium-400 uppercase tracking-widest">
-              2 - 8 OPERATORS ONLY
+          </div>
+
+          {/* Feature 2: Safety First */}
+          <div className="studio-panel rounded-2xl p-6 sm:p-8 grid md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-8 order-2 md:order-1">
+              <div className="flex items-center gap-2 text-sky-700 text-xs font-mono font-bold uppercase tracking-wider mb-2">
+                <ShieldCheck className="w-4 h-4" />
+                <span>Private Groups Only</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 tracking-tight">
+                Safety First!
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                You don&apos;t need to worry about big kids trampling your child or shouting obscenities. Command Deck
+                never forces you to combine with strangers, so only you can decide who enters the arena with your loved
+                ones.
+              </p>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                Every game briefing is given live by one of our highly trained referees because a video cannot tell when
+                a player is not listening to the rules. Also, to ensure a quality experience, we only host small groups of
+                two to eight players, so that our referee can see and control what goes on inside the arena at all times.
+              </p>
+              <div className="flex flex-wrap gap-4 text-xs font-medium text-slate-700">
+                <span className="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-md">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  Small groups of 2 to 8 players
+                </span>
+                <span className="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-md">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  Never combined with strangers
+                </span>
+                <span className="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-md">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  Live in-person briefings
+                </span>
+              </div>
+            </div>
+            <div className="md:col-span-4 order-1 md:order-2 relative h-56 sm:h-64 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-xs flex items-center justify-center p-4">
+              <Image
+                src="/images/Safety-First-162x140.png"
+                alt="Command Deck Safety First Emblem"
+                width={200}
+                height={170}
+                className="object-contain"
+              />
             </div>
           </div>
 
-          <div className="p-6 rounded-xl bg-hull-900/60 border border-white/5 hover:border-phaser-cyan/30 transition-all flex flex-col justify-between">
-            <div>
-              <div className="font-mono text-[10px] text-phaser-cyan tracking-[0.2em] uppercase mb-3">
-                PILLAR 02 // SAFETY
-              </div>
-              <h3 className="text-base font-bold text-white mb-2">Engineered Safety Hull</h3>
-              <p className="text-titanium-400 text-xs leading-relaxed">
-                Industrial foam padding on walls. Swaying barriers designed to absorb momentum with pop-out crush zones.
-              </p>
+          {/* Feature 3: Relax... We've got your back! */}
+          <div className="studio-panel rounded-2xl p-6 sm:p-8 grid md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-4 relative h-56 sm:h-64 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-xs">
+              <Image
+                src="/images/mom-326x185.jpg"
+                alt="Mom enjoying a moment of Zen"
+                fill
+                className="object-cover"
+              />
             </div>
-            <div className="mt-6 pt-3 border-t border-white/5 font-mono text-[10px] text-titanium-400 uppercase tracking-widest">
-              SWAY &amp; CRUSH ZONES
+            <div className="md:col-span-8">
+              <div className="flex items-center gap-2 text-sky-700 text-xs font-mono font-bold uppercase tracking-wider mb-2">
+                <Heart className="w-4 h-4" />
+                <span>Parental Peace of Mind</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 tracking-tight">
+                Relax... We&apos;ve got your back!
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                If mom needs a break, we can keep your kids entertained while you enjoy a much-deserved moment of Zen!
+                Leave the little ones with us, and don&apos;t worry about a thing. We are great with kids!
+              </p>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                All of our referees are clean-cut, background checked, drug screened, and hand-picked for their fun and
+                charismatic personalities. For your child&apos;s safety and your peace of mind, the arena is monitored
+                and recorded in real time with wireless surveillance, and you can check the live video feed at any time
+                with our remote viewing tablet. Think day care... with lasers!
+              </p>
+              <div className="flex items-center gap-3 pt-2">
+                <div className="relative w-10 h-10 rounded-full overflow-hidden border border-slate-300">
+                  <Image src="/images/staff-179x179.jpg" alt="Staff Referee" fill className="object-cover" />
+                </div>
+                <div className="text-xs text-slate-600">
+                  <span className="font-semibold text-slate-900">Background-checked, drug-screened staff</span>
+                  <div className="text-[11px] text-slate-500">Dedicated to patient, positive player mentorship</div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="p-6 rounded-xl bg-hull-900/60 border border-white/5 hover:border-phaser-cyan/30 transition-all flex flex-col justify-between">
-            <div>
-              <div className="font-mono text-[10px] text-phaser-cyan tracking-[0.2em] uppercase mb-3">
-                PILLAR 03 // LEADERSHIP
+          {/* Feature 4: Safety Second, Third, and Fourth! */}
+          <div className="studio-panel rounded-2xl p-6 sm:p-8 grid md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-8 order-2 md:order-1">
+              <div className="flex items-center gap-2 text-sky-700 text-xs font-mono font-bold uppercase tracking-wider mb-2">
+                <ShieldCheck className="w-4 h-4" />
+                <span>Engineered Arena Hardware</span>
               </div>
-              <h3 className="text-base font-bold text-white mb-2">Live Staff Mentorship</h3>
-              <p className="text-titanium-400 text-xs leading-relaxed">
-                Background-checked, charismatic referees gave live game briefings and stepped inside the course to guide
-                matches.
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 tracking-tight">
+                Safety Second, Third, and Fourth!
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                Our arena is designed to be bright enough to see what&apos;s around you, and we&apos;ve created open spaces
+                so players can maneuver safely. Our walls are covered with a layer of industrial grade foam padding, and
+                our specially designed barriers shift and sway to absorb impact and even have pop-out crush zones to
+                prevent injury in case of collision.
               </p>
-            </div>
-            <div className="mt-6 pt-3 border-t border-white/5 font-mono text-[10px] text-titanium-400 uppercase tracking-widest">
-              IN-ARENA REFEREEING
-            </div>
-          </div>
-
-          <div className="p-6 rounded-xl bg-hull-900/60 border border-white/5 hover:border-phaser-cyan/30 transition-all flex flex-col justify-between">
-            <div>
-              <div className="font-mono text-[10px] text-phaser-cyan tracking-[0.2em] uppercase mb-3">
-                PILLAR 04 // HOSPITALITY
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                Our laser tag guns shoot infrared light that cannot burn the retina like lasers, and we provide your
+                choice of ballistic safety glasses or full paintball masks for those who wish to protect their faces
+                from close encounters.
+              </p>
+              <div className="flex flex-wrap gap-4 text-xs font-medium text-slate-700">
+                <span className="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-md">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  Industrial foam-padded walls
+                </span>
+                <span className="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-md">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  Impact-absorbing sway barriers
+                </span>
+                <span className="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-md">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  Infrared eye-safe optical beams
+                </span>
               </div>
-              <h3 className="text-base font-bold text-white mb-2">Mom&apos;s Moment of Zen</h3>
-              <p className="text-titanium-400 text-xs leading-relaxed">
-                Positioned in a bright, clean mall concourse with remote video surveillance tablets for waiting parents.
-              </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-white/5 font-mono text-[10px] text-titanium-400 uppercase tracking-widest">
-              PROVO TOWNE CENTRE
+            <div className="md:col-span-4 order-1 md:order-2 relative h-56 sm:h-64 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-xs">
+              <Image
+                src="/images/safe-269x195.jpg"
+                alt="Tactical safety gear and obstacle sway barrier"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </div>

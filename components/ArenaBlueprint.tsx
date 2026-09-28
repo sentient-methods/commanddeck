@@ -2,203 +2,195 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Crosshair, Terminal, Shield, Eye, Layers } from 'lucide-react';
+import { LayoutGrid, CheckCircle2, ChevronRight } from 'lucide-react';
 
-interface Sector {
+interface ArenaSector {
   id: string;
   name: string;
-  callsign: string;
-  coordinates: string;
+  badge: string;
+  location: string;
   image: string;
-  description: string;
-  specifications: string[];
+  summary: string;
+  features: string[];
 }
 
-const SECTORS: Sector[] = [
+const SECTORS: ArenaSector[] = [
   {
-    id: 'concourse',
-    name: 'Concourse Check-In Kiosk & Gaming Podiums',
-    callsign: 'CONSOLE 01 // ENTRY AIRLOCK',
-    coordinates: 'PTC-CONCOURSE-101',
+    id: 'kiosk',
+    name: 'Concourse Check-In Kiosk & Gaming Barstools',
+    badge: 'ENTRANCE & SPECTATOR CONSOLE',
+    location: 'Provo Towne Centre Lower Level',
     image: '/images/Picture15-244x173.jpg',
-    description:
-      'Positioned in the Provo Towne Centre walkway directly below Cinemark 16. Featured a custom timber kiosk, flat-screen match status displays, and barstool console stations where kids could play Xbox and watch live arena combat.',
-    specifications: [
-      'Four gaming console barstools for pre-game and post-game matches',
-      'Live external match scoreboards for waiting spectators and parents',
-      'Direct line of sight to the central mall concourse and play area',
-      'Cosmic asteroid wrap storefront with glass observation sightlines',
+    summary:
+      'Located in the mall concourse directly below Cinemark 16 and next to the children’s play area. Outfitted with high-top barstools, Xbox gaming stations, live match scoreboards, and direct sightlines into the facility.',
+    features: [
+      'Four console barstool stations for waiting players and video gaming',
+      'Exterior scoreboard monitors broadcasting real-time match telemetry',
+      'Clean mall concourse storefront surrounded by shopping and dining',
+      'Walk-up check-in desk for private squads and birthday groups',
     ],
   },
   {
-    id: 'staging',
-    name: 'Briefing Room & Course Pizza Staging',
-    callsign: 'CONSOLE 02 // BRIEFING DECK',
-    coordinates: 'PTC-INTERIOR-201',
+    id: 'party-staging',
+    name: 'In-Course Birthday Staging & Pizza Area',
+    badge: 'CELEBRATION DECK',
+    location: 'Interior Arena Staging Area',
     image: '/images/party-768x210.jpg',
-    description:
-      'Unlike conventional arcades that banish parties to a cramped back room, Command Deck turned on the overhead arena lights so birthday squads could eat pizza and cake right inside the silver barrier course before jumping into gameplay.',
-    specifications: [
-      'In-course party seating surrounded by insulated metallic cargo barriers',
-      'Live in-person briefings led by certified referees (no canned videos)',
-      'Giant television displays for Xbox tournaments and party entertainment',
-      'Private reservation format: no outside groups sharing the space',
+    summary:
+      'Rather than banishing party guests to a cramped, generic side room, Command Deck turned on the overhead course lights so families could eat pizza and cake right inside the silver barrier course before playing laser tag.',
+    features: [
+      'Tables and seating positioned directly among the arena barriers',
+      'Giant flat-screen displays for post-game Xbox matches and party videos',
+      'Live in-person briefings coached by dedicated referees (no video recordings)',
+      '100% private celebration time: no sharing the space with other groups',
     ],
   },
   {
-    id: 'killzone',
-    name: 'Starship CQB Maze & Sway Barrier Corridors',
-    callsign: 'CONSOLE 03 // CQB BATTLESPACE',
-    coordinates: 'PTC-INTERIOR-301',
+    id: 'cqb-course',
+    name: 'CQB Maze & Sway Barrier Obstacles',
+    badge: 'TACTICAL BATTLESPACE',
+    location: 'Main Combat Arena',
     image: '/images/safe-269x195.jpg',
-    description:
-      'A non-stop firefight corridor maze engineered with black diamond-plate steel flooring, industrial structural truss beams, and custom impact-absorbing sway barriers with pop-out crush zones to ensure zero collision injuries.',
-    specifications: [
-      'Black diamond-plate steel floor treads throughout the entire combat zone',
-      'Impact-absorbing barriers engineered to flex and pop out during collisions',
-      'Industrial foam padding along all perimeter structural boundary walls',
-      'Bright ambient task lighting (blue/white LEDs) for clear visual tracking',
+    summary:
+      'An intimate close quarters battle maze built with industrial black diamond-plate steel flooring, structural overhead truss lighting, and impact-absorbing swaying barriers engineered with pop-out crush zones for player collision safety.',
+    features: [
+      'Black diamond-plate floor treads throughout the entire combat course',
+      'Specially designed barriers that sway and pop out to absorb impact safely',
+      'Industrial grade foam padding lining all perimeter structural walls',
+      'Crisp task lighting with reactive match audio and tempo changes',
     ],
   },
   {
-    id: 'resupply',
-    name: 'RFID Ammo Dump & Respawn Transponders',
-    callsign: 'CONSOLE 04 // RESUPPLY PODS',
-    coordinates: 'PTC-TELEMETRY-401',
+    id: 'rfid-bases',
+    name: 'RFID Ammo Bases & Tactical Weapon HUDs',
+    badge: 'WEAPON SYSTEMS & RESUPPLY',
+    location: 'Course Bulkhead Transponders',
     image: '/images/Picture9-244x173.jpg',
-    description:
-      'Wall-mounted illuminated terminal pods stationed throughout the course. Players physically tapped their weapon sensors to resupply ammunition, reset health, or capture tactical objectives during scenario-based games.',
-    specifications: [
-      'Active RFID transponders embedded in wall-mounted tactical bulkheads',
-      'Real-time blaster HUD feedback displaying live ammo count and health points',
-      'Supports realistic tactical games: Room Clearing, Sudden Death, and Limited Ammo',
-      'Infrared beam technology paired with ballistic eye protection and paintball masks',
+    summary:
+      'Tactical carbines equipped with heads-up displays showing real-time health points and ammo reserves. Wall-mounted illuminated RFID bases served as ammo supply points, medical respawns, and objective capture points.',
+    features: [
+      'Active RFID bases for scanning ammo dumps and respawn resets',
+      'Blaster HUD feedback displaying live health points and ammunition counts',
+      'Eye-safe infrared beams paired with ballistic safety glasses or masks',
+      'Game modes supporting room clearing, limited ammunition, and team duels',
     ],
   },
   {
-    id: 'observation',
-    name: 'Recon Overwatch & Tablet Surveillance',
-    callsign: 'CONSOLE 05 // OVERWATCH',
-    coordinates: 'PTC-COMMAND-501',
+    id: 'surveillance',
+    name: 'Wireless Video Overwatch & Tablet Feeds',
+    badge: 'PARENTAL COMMAND & MONITORING',
+    location: 'Arena Surveillance Network',
     image: '/images/Picture8-244x173.jpg',
-    description:
-      'Engineered for maximum parental peace of mind. Wireless arena cameras broadcast live feeds to tablet computers and concourse monitors, allowing parents to shop or relax while keeping visual contact with their kids.',
-    specifications: [
-      'Wireless live video surveillance covering every angle of the CQB arena',
-      'Remote viewing tablets available for parents relaxing in the mall concourse',
-      'Real-time digital telemetry scoreboards with team stats and player ranks',
-      'Clean-cut, background-checked, drug-screened referee staff',
+    summary:
+      'Engineered for parental peace of mind. Wireless arena cameras streamed live video to remote tablets and concourse monitors, allowing parents to relax, shop, or visit nearby stores while keeping eyes on their kids.',
+    features: [
+      'Wireless video cameras covering every corridor of the CQB course',
+      'Portable remote viewing tablets available for parents in the mall concourse',
+      'Digital match scoreboards displaying player ranks and accuracy stats',
+      'Live in-arena referee monitoring every second of the engagement',
     ],
   },
 ];
 
 export default function ArenaBlueprint() {
-  const [activeSector, setActiveSector] = useState<Sector>(SECTORS[0]);
+  const [activeSector, setActiveSector] = useState<ArenaSector>(SECTORS[0]);
 
   return (
-    <section id="blueprint" className="py-24 bg-void relative bridge-grid">
+    <section id="blueprint" className="py-20 bg-slate-50/70 border-b border-slate-200 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <div className="telemetry-chip mb-3">
-            <span>FACILITY SCHEMATIC // SECTION 02</span>
+        <div className="max-w-3xl mb-14">
+          <div className="status-pill mb-3">
+            <span>FACILITY ARCHITECTURE // ARENA SCHEMATIC</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-            Interactive Arena Blueprint
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            The Arena Facility Layout
           </h2>
-          <p className="mt-4 text-titanium-300 text-sm sm:text-base leading-relaxed">
-            Select a station console below to review the engineering blueprints and verified archival imagery of each
-            sector within the Provo Towne Centre facility.
+          <p className="mt-3 text-slate-600 text-base leading-relaxed">
+            Take an architectural tour through each sector of the original Command Deck facility at Provo Towne Centre,
+            documented through preserved photography and facility schematics.
           </p>
         </div>
 
-        {/* High-Precision Console Selector */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/5">
+        {/* Sector Navigation Buttons */}
+        <div className="flex flex-wrap items-center gap-2 mb-8 pb-4 border-b border-slate-200">
           {SECTORS.map((sector) => {
-            const isActive = activeSector.id === sector.id;
+            const isSelected = activeSector.id === sector.id;
             return (
               <button
                 key={sector.id}
                 onClick={() => setActiveSector(sector)}
-                className={`px-4 py-2.5 rounded-lg text-xs font-mono tracking-wider transition-all flex items-center gap-2.5 border ${
-                  isActive
-                    ? 'bg-hull-900 text-phaser-cyan border-phaser-cyan shadow-[0_0_20px_-3px_rgba(0,229,255,0.25)]'
-                    : 'bg-hull-950/60 text-titanium-400 border-white/5 hover:text-titanium-200 hover:border-white/10'
+                className={`px-4 py-2.5 rounded-lg text-xs font-semibold tracking-wide transition-all flex items-center gap-2 border ${
+                  isSelected
+                    ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
+                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100 hover:text-slate-900'
                 }`}
               >
-                <Crosshair className={`w-3.5 h-3.5 ${isActive ? 'text-phaser-cyan' : 'text-titanium-400'}`} />
-                <span className="uppercase">{sector.name.split('&')[0].trim()}</span>
+                <LayoutGrid className={`w-3.5 h-3.5 ${isSelected ? 'text-sky-400' : 'text-slate-400'}`} />
+                <span>{sector.name.split('&')[0].trim()}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Master Console Display Panel */}
-        <div className="grid lg:grid-cols-12 gap-8 items-stretch rounded-2xl bg-hull-950/90 border border-white/10 p-6 sm:p-10 relative overflow-hidden shadow-2xl">
-          {/* Subtle Top Anamorphic Flare in Console */}
-          <div className="absolute top-0 left-10 right-10 flare-subtle"></div>
-
-          {/* Left Console Readout */}
+        {/* Selected Sector Architectural Panel */}
+        <div className="studio-panel rounded-2xl p-6 sm:p-10 grid lg:grid-cols-12 gap-8 items-stretch border border-slate-200">
+          {/* Left Text / Specs */}
           <div className="lg:col-span-6 flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
-                <span className="font-mono text-xs text-phaser-cyan font-semibold tracking-[0.2em]">
-                  {activeSector.callsign}
+              <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-100">
+                <span className="font-mono text-xs font-bold text-sky-700 tracking-wider">
+                  {activeSector.badge}
                 </span>
-                <span className="font-mono text-[10px] text-titanium-400 tracking-wider">
-                  COORD: {activeSector.coordinates}
+                <span className="text-xs font-medium text-slate-500 font-mono">
+                  {activeSector.location}
                 </span>
               </div>
 
-              <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{activeSector.name}</h3>
+              <h3 className="text-2xl font-bold text-slate-900 mb-3 tracking-tight">
+                {activeSector.name}
+              </h3>
 
-              <p className="text-titanium-300 text-sm leading-relaxed mb-8">{activeSector.description}</p>
+              <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                {activeSector.summary}
+              </p>
 
-              <div className="space-y-3 mb-8">
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-titanium-400 flex items-center gap-2 mb-3">
-                  <Terminal className="w-3.5 h-3.5 text-phaser-cyan" />
-                  <span>Subsystem Specifications:</span>
+              <div className="space-y-2.5 mb-6">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-700 font-mono">
+                  Facility Specifications:
                 </div>
-                {activeSector.specifications.map((spec, idx) => (
-                  <div key={idx} className="flex items-start gap-3 text-xs text-titanium-200">
-                    <span className="w-1.5 h-1.5 rounded-full bg-phaser-cyan mt-1.5 shrink-0"></span>
-                    <span className="leading-relaxed">{spec}</span>
+                {activeSector.features.map((feature, idx) => (
+                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-600">
+                    <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
+                    <span className="leading-relaxed">{feature}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/5 font-mono text-[10px] text-titanium-400 flex items-center justify-between tracking-widest uppercase">
-              <span>DECOMMISSIONED ARENA SPECIFICATION</span>
-              <span>TACTICAL ACTION GAMES LLC</span>
+            <div className="pt-4 border-t border-slate-100 text-[11px] font-mono text-slate-500 flex items-center justify-between">
+              <span>Provo Towne Centre Facility</span>
+              <span className="font-semibold text-sky-700">Verified Archival Record</span>
             </div>
           </div>
 
-          {/* Right Precision Optical Frame */}
-          <div className="lg:col-span-6 flex flex-col min-h-[360px] sm:min-h-[420px]">
-            <div className="relative w-full h-full min-h-[360px] sm:min-h-[420px] rounded-xl overflow-hidden bg-hull-900 border border-white/10 shadow-inner group">
+          {/* Right Photographic Frame */}
+          <div className="lg:col-span-6 flex flex-col min-h-[320px] sm:min-h-[380px]">
+            <div className="relative w-full h-full min-h-[320px] sm:min-h-[380px] rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shadow-inner group">
               <Image
                 src={activeSector.image}
                 alt={activeSector.name}
                 fill
                 priority
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-hull-950/80 via-transparent to-transparent pointer-events-none"></div>
-              
-              {/* Corner Telemetry Brackets */}
-              <div className="absolute top-3 left-3 text-[10px] font-mono text-phaser-cyan tracking-widest bg-void/60 px-2 py-0.5 rounded border border-white/5">
-                [ CAMERA FEED // ARCHIVAL ]
-              </div>
-              <div className="absolute top-3 right-3 text-[10px] font-mono text-titanium-300 tracking-widest bg-void/60 px-2 py-0.5 rounded border border-white/5">
-                [ VERIFIED PTC ]
-              </div>
-
-              <div className="absolute bottom-4 left-4 right-4 p-3 rounded-lg bg-hull-950/90 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs font-mono text-titanium-300">
-                <span className="truncate uppercase tracking-wider text-[11px] text-white font-semibold">
+              <div className="absolute bottom-3 left-3 right-3 p-3 rounded-lg bg-white/95 backdrop-blur-md border border-slate-200 text-xs flex items-center justify-between shadow-sm">
+                <span className="font-semibold text-slate-800 truncate">
                   {activeSector.name}
                 </span>
-                <span className="text-phaser-cyan text-[10px] tracking-widest uppercase shrink-0">AUTHENTIC PHOTO</span>
+                <span className="text-[10px] font-mono font-bold text-sky-700 shrink-0 ml-2 uppercase">
+                  Archival Photo
+                </span>
               </div>
             </div>
           </div>

@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Command Deck CQB Academy (2012 - 2020) | Memorial & Nostalgia Archive',
-  description: 'Historical archive and tribute to the Command Deck CQB Laser Tag Academy at the Provo Towne Centre in Provo, Utah.',
+  title: 'Command Deck | Close Quarters Battle Laser Tag (Provo Towne Centre)',
+  description:
+    'Command Deck CQB Academy: Family-friendly tactical laser tag arena formerly located at Provo Towne Centre below Cinemark 16 in Provo, Utah. Small private groups, live referee coaching, and zero strangers.',
   icons: {
-    icon: '/images/cdww-630x175.jpg',
+    icon: '/images/MB_Seal.JPG',
   },
 };
 
@@ -15,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="bg-deck-950 text-slate-100 min-h-screen flex flex-col selection:bg-tactical-cyan selection:text-deck-950">
+    <html lang="en" className="scroll-smooth">
+      <body className="bg-white text-slate-900 min-h-screen flex flex-col selection:bg-sky-100 selection:text-sky-900">
         {children}
       </body>
     </html>

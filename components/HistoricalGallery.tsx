@@ -2,215 +2,213 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Camera, X, ZoomIn, Calendar, MapPin, Eye } from 'lucide-react';
+import { X, ZoomIn, Calendar, MapPin } from 'lucide-react';
 
-interface ArchivalRecord {
+interface ArchivalPhoto {
   id: string;
   src: string;
   title: string;
-  category: 'storefront' | 'firefights' | 'parties' | 'hardware';
+  category: 'storefront' | 'matches' | 'parties' | 'gear';
   date: string;
-  caption: string;
+  description: string;
 }
 
-const RECORDS: ArchivalRecord[] = [
+const PHOTOS: ArchivalPhoto[] = [
   {
-    id: 'storefront-facade',
+    id: 'storefront',
     src: '/images/Picture63-244x173.jpg',
-    title: 'The Mall Concourse Storefront',
+    title: 'Mall Concourse Storefront Entrance',
     category: 'storefront',
     date: 'circa 2014',
-    caption:
-      'Storefront entrance on the lower level of Provo Towne Centre, wrapped in cosmic asteroid graphics with CQB LASER TAG lettering and overhead match action monitors.',
+    description:
+      'The storefront entrance on the lower level of Provo Towne Centre, wrapped in cosmic asteroid artwork with CQB LASER TAG signage and overhead action screens.',
   },
   {
-    id: 'kiosk-consoles',
+    id: 'kiosk',
     src: '/images/Picture15-244x173.jpg',
-    title: 'Laser Tag Check-In Kiosk',
+    title: 'Check-In Kiosk & Barstools',
     category: 'storefront',
     date: 'circa 2013',
-    caption:
-      'The check-in kiosk directly facing the concourse walkway, equipped with 4 barstool gaming stations and flat-screen tournament displays.',
+    description:
+      'The custom check-in kiosk directly facing the concourse walkway, equipped with four console barstools and flat-screen match status monitors.',
   },
   {
-    id: 'ptc-mall-exterior',
+    id: 'ptc-exterior',
     src: '/images/PTC-287x186.jpg',
-    title: 'Provo Towne Centre Exterior',
+    title: 'Provo Towne Centre Mall',
     category: 'storefront',
     date: 'circa 2013',
-    caption:
-      'The Provo Towne Centre at dusk. Command Deck was situated on the lower level directly beneath the Cinemark 16 cinema complex.',
+    description:
+      'Exterior view of the Provo Towne Centre at dusk. Command Deck was situated on the ground floor directly below the Cinemark 16 complex.',
   },
   {
-    id: 'corridor-firefight',
+    id: 'corridor-match',
     src: '/images/Picture9-244x173.jpg',
     title: 'Close Combat in the CQB Maze',
-    category: 'firefights',
+    category: 'matches',
     date: 'circa 2015',
-    caption:
-      'Two young operators advancing through the arena corridor, utilizing tactical cover against industrial diamond-plate steel flooring and blue LED illumination.',
+    description:
+      'Two players advancing through the arena maze, using tactical cover along the industrial diamond-plate steel flooring and blue LED course illumination.',
   },
   {
-    id: 'starship-airlock-safe',
+    id: 'resupply-zone',
     src: '/images/safe-269x195.jpg',
-    title: 'Starship Corridor & Resupply Pod',
-    category: 'firefights',
+    title: 'Corridor Sway Barrier & Resupply',
+    category: 'matches',
     date: 'circa 2014',
-    caption:
-      'Tactical engagement alongside the wall-mounted RFID ammo resupply terminal and industrial structural truss framework.',
+    description:
+      'In-game action showing the impact-absorbing sway barriers, wall padding, and wall-mounted RFID ammo resupply base.',
   },
   {
-    id: 'party-in-course',
+    id: 'birthday-group',
     src: '/images/party-768x210.jpg',
-    title: 'Pizza Party Inside the Arena Course',
+    title: 'In-Course Pizza Birthday Party',
     category: 'parties',
     date: 'circa 2015',
-    caption:
-      'Birthday squad enjoying pizza and cupcakes inside the barrier course with the house lights turned on, followed by Xbox gaming on the big screen.',
+    description:
+      'A birthday squad enjoying pizza and cupcakes right inside the barrier course with house lights turned on, followed by Xbox gaming on the big screen.',
   },
   {
     id: 'squad-stance',
     src: '/images/Picture32-371x265.png',
-    title: 'Squad Tactical Stance',
+    title: 'Tactical Squad Stance',
     category: 'parties',
     date: 'circa 2014',
-    caption:
-      'Squad photo taken inside the arena with weapon HUDs illuminated and players holding tactical defensive positions.',
+    description:
+      'Squad photo taken inside the arena with weapon HUDs illuminated and players holding defensive positions in the maze.',
   },
   {
-    id: 'referee-briefing',
+    id: 'briefing-touchscreen',
     src: '/images/Picture8-244x173.jpg',
-    title: 'Live Referee Touchscreen Briefing',
-    category: 'hardware',
+    title: 'Live Referee Coaching & Briefing',
+    category: 'gear',
     date: 'circa 2015',
-    caption:
-      'A Command Deck referee coaching young players through game rules and tactical objectives on the touch-screen briefing console.',
+    description:
+      'A Command Deck referee guiding players through game rules and tactical objectives on the touch-screen briefing podium.',
   },
   {
     id: 'academy-seal',
     src: '/images/MB_Seal.JPG',
-    title: 'Command Deck Crew Academy Seal',
-    category: 'hardware',
+    title: 'Official Command Deck Academy Seal',
+    category: 'gear',
     date: 'circa 2013',
-    caption: 'Official emblem and insignia used for Command Deck Crew passes and academy certification.',
+    description:
+      'The original crest and seal used for Command Deck Crew passes, tournament certificates, and facility branding.',
   },
 ];
 
 export default function HistoricalGallery() {
-  const [selectedRecord, setSelectedRecord] = useState<ArchivalRecord | null>(null);
-  const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [selectedPhoto, setSelectedPhoto] = useState<ArchivalPhoto | null>(null);
+  const [filter, setFilter] = useState<string>('all');
 
-  const filteredRecords =
-    activeFilter === 'all' ? RECORDS : RECORDS.filter((r) => r.category === activeFilter);
+  const filteredPhotos = filter === 'all' ? PHOTOS : PHOTOS.filter((p) => p.category === filter);
 
   return (
-    <section id="gallery" className="py-24 bg-hull-950/60 border-t border-b border-white/5 relative">
+    <section id="gallery" className="py-20 bg-white border-b border-slate-200 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-14">
-          <div className="telemetry-chip mb-3">
-            <span>PHOTOGRAPHIC MANIFEST // SECTION 03</span>
+          <div className="status-pill mb-3">
+            <span>PHOTOGRAPHIC RECORD // ORIGINAL IMAGERY</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-            Visual Flight Log &amp; Archive
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            Arena Photo Gallery
           </h2>
-          <p className="mt-4 text-titanium-300 text-sm sm:text-base leading-relaxed">
-            Preserved directly from the original web origin. These high-resolution photographs document the physical
-            storefront, diamond-plate corridors, and community gatherings at Provo Towne Centre.
+          <p className="mt-3 text-slate-600 text-base leading-relaxed">
+            Preserved directly from the original Command Deck archives. These authentic photographs document the
+            mall entrance, diamond-plate corridors, party celebrations, and staff at Provo Towne Centre.
           </p>
         </div>
 
-        {/* Minimalist Filter Navigation */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/5 text-xs font-mono">
+        {/* Filter Navigation */}
+        <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-slate-200 text-xs font-semibold">
           <button
-            onClick={() => setActiveFilter('all')}
-            className={`px-3.5 py-1.5 rounded-lg border transition-all ${
-              activeFilter === 'all'
-                ? 'bg-hull-900 text-phaser-cyan border-phaser-cyan'
-                : 'bg-hull-950/60 text-titanium-400 border-white/5 hover:text-white hover:border-white/10'
+            onClick={() => setFilter('all')}
+            className={`px-3.5 py-2 rounded-lg border transition-all ${
+              filter === 'all'
+                ? 'bg-slate-900 text-white border-slate-900'
+                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
             }`}
           >
-            All Archival Records ({RECORDS.length})
+            All Photos ({PHOTOS.length})
           </button>
           <button
-            onClick={() => setActiveFilter('storefront')}
-            className={`px-3.5 py-1.5 rounded-lg border transition-all ${
-              activeFilter === 'storefront'
-                ? 'bg-hull-900 text-phaser-cyan border-phaser-cyan'
-                : 'bg-hull-950/60 text-titanium-400 border-white/5 hover:text-white hover:border-white/10'
+            onClick={() => setFilter('storefront')}
+            className={`px-3.5 py-2 rounded-lg border transition-all ${
+              filter === 'storefront'
+                ? 'bg-slate-900 text-white border-slate-900'
+                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
             }`}
           >
             Storefront &amp; Concourse
           </button>
           <button
-            onClick={() => setActiveFilter('firefights')}
-            className={`px-3.5 py-1.5 rounded-lg border transition-all ${
-              activeFilter === 'firefights'
-                ? 'bg-hull-900 text-phaser-cyan border-phaser-cyan'
-                : 'bg-hull-950/60 text-titanium-400 border-white/5 hover:text-white hover:border-white/10'
+            onClick={() => setFilter('matches')}
+            className={`px-3.5 py-2 rounded-lg border transition-all ${
+              filter === 'matches'
+                ? 'bg-slate-900 text-white border-slate-900'
+                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
             }`}
           >
-            Arena Engagements
+            Arena Matches
           </button>
           <button
-            onClick={() => setActiveFilter('parties')}
-            className={`px-3.5 py-1.5 rounded-lg border transition-all ${
-              activeFilter === 'parties'
-                ? 'bg-hull-900 text-phaser-cyan border-phaser-cyan'
-                : 'bg-hull-950/60 text-titanium-400 border-white/5 hover:text-white hover:border-white/10'
+            onClick={() => setFilter('parties')}
+            className={`px-3.5 py-2 rounded-lg border transition-all ${
+              filter === 'parties'
+                ? 'bg-slate-900 text-white border-slate-900'
+                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
             }`}
           >
-            Birthday Squads
+            Birthday Parties
           </button>
           <button
-            onClick={() => setActiveFilter('hardware')}
-            className={`px-3.5 py-1.5 rounded-lg border transition-all ${
-              activeFilter === 'hardware'
-                ? 'bg-hull-900 text-phaser-cyan border-phaser-cyan'
-                : 'bg-hull-950/60 text-titanium-400 border-white/5 hover:text-white hover:border-white/10'
+            onClick={() => setFilter('gear')}
+            className={`px-3.5 py-2 rounded-lg border transition-all ${
+              filter === 'gear'
+                ? 'bg-slate-900 text-white border-slate-900'
+                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900'
             }`}
           >
-            Hardware &amp; Briefings
+            Gear &amp; Briefings
           </button>
         </div>
 
-        {/* Gallery Grid */}
+        {/* Gallery Cards Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredRecords.map((record) => (
+          {filteredPhotos.map((photo) => (
             <div
-              key={record.id}
-              onClick={() => setSelectedRecord(record)}
-              className="group cursor-pointer rounded-xl bg-hull-950 border border-white/10 hover:border-phaser-cyan/50 overflow-hidden transition-all duration-300 shadow-lg hover:shadow-2xl flex flex-col"
+              key={photo.id}
+              onClick={() => setSelectedPhoto(photo)}
+              className="studio-panel group cursor-pointer rounded-xl overflow-hidden border border-slate-200 hover:border-sky-300 transition-all flex flex-col"
             >
-              <div className="relative w-full h-56 bg-void overflow-hidden">
+              <div className="relative w-full h-52 bg-slate-100 overflow-hidden">
                 <Image
-                  src={record.src}
-                  alt={record.title}
+                  src={photo.src}
+                  alt={photo.title}
                   fill
-                  loading="eager"
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-hull-950 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity"></div>
-                <div className="absolute top-3 right-3 p-1.5 rounded bg-hull-950/80 backdrop-blur-md border border-white/10 text-titanium-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ZoomIn className="w-3.5 h-3.5 text-phaser-cyan" />
+                <div className="absolute top-2.5 right-2.5 p-1.5 rounded-md bg-white/90 backdrop-blur-xs border border-slate-200 text-slate-700 opacity-0 group-hover:opacity-100 transition-opacity shadow-xs">
+                  <ZoomIn className="w-4 h-4 text-sky-700" />
                 </div>
               </div>
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between text-[10px] font-mono text-phaser-cyan mb-2 tracking-widest uppercase">
-                    <span>{record.date}</span>
-                    <span className="text-titanium-400">{record.category}</span>
+                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 mb-1.5">
+                    <span>{photo.date}</span>
+                    <span className="font-semibold text-sky-700 uppercase">{photo.category}</span>
                   </div>
-                  <h3 className="font-bold text-white text-sm group-hover:text-phaser-cyan transition-colors tracking-tight">
-                    {record.title}
+                  <h3 className="font-bold text-slate-900 text-sm group-hover:text-sky-700 transition-colors">
+                    {photo.title}
                   </h3>
-                  <p className="text-titanium-400 text-xs mt-2 line-clamp-2 leading-relaxed">
-                    {record.caption}
+                  <p className="text-slate-500 text-xs mt-2 line-clamp-2 leading-relaxed">
+                    {photo.description}
                   </p>
                 </div>
-                <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-titanium-400 tracking-wider uppercase">
-                  <span>INSPECT RECORD</span>
-                  <span>VERIFIED PTC</span>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
+                  <span>View Archival Photo</span>
+                  <span className="font-semibold text-sky-700">Provo Towne Centre</span>
                 </div>
               </div>
             </div>
@@ -218,56 +216,53 @@ export default function HistoricalGallery() {
         </div>
       </div>
 
-      {/* Lightbox Optical Viewer Modal */}
-      {selectedRecord && (
+      {/* Lightbox Modal */}
+      {selectedPhoto && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6"
-          onClick={() => setSelectedRecord(null)}
+          className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setSelectedPhoto(null)}
         >
           <div
-            className="relative max-w-4xl w-full rounded-2xl bg-hull-950 border border-white/15 overflow-hidden shadow-2xl"
+            className="relative max-w-3xl w-full rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="px-6 py-4 bg-void/90 border-b border-white/10 flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-phaser-cyan animate-pulse"></span>
-                <span className="font-mono text-xs text-white tracking-widest uppercase font-semibold">
-                  {selectedRecord.title}
-                </span>
-              </div>
+            <div className="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+              <span className="font-bold text-slate-900 text-sm">
+                {selectedPhoto.title}
+              </span>
               <button
-                onClick={() => setSelectedRecord(null)}
-                className="p-1 rounded-lg bg-hull-900 hover:bg-hull-850 text-titanium-400 hover:text-white transition-colors"
-                aria-label="Close modal"
+                onClick={() => setSelectedPhoto(null)}
+                className="p-1 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-200 transition-colors"
+                aria-label="Close photo preview"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Modal Image Display */}
-            <div className="relative w-full h-80 sm:h-[480px] bg-void">
+            {/* Modal Image */}
+            <div className="relative w-full h-80 sm:h-96 bg-slate-100 flex items-center justify-center p-4">
               <Image
-                src={selectedRecord.src}
-                alt={selectedRecord.title}
+                src={selectedPhoto.src}
+                alt={selectedPhoto.title}
                 fill
                 className="object-contain"
               />
             </div>
 
-            {/* Modal Telemetry Caption */}
-            <div className="p-6 bg-hull-950 border-t border-white/10">
-              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-titanium-400 mb-3 tracking-wider">
-                <div className="flex items-center gap-1.5 text-phaser-cyan">
+            {/* Modal Caption */}
+            <div className="p-6 bg-white border-t border-slate-200">
+              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-500 mb-2">
+                <div className="flex items-center gap-1.5 text-sky-700 font-semibold">
                   <Calendar className="w-3.5 h-3.5" />
-                  <span>{selectedRecord.date}</span>
+                  <span>{selectedPhoto.date}</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-titanium-300">
-                  <MapPin className="w-3.5 h-3.5 text-phaser-cyan" />
+                <div className="flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-slate-400" />
                   <span>Provo Towne Centre (Lower Level)</span>
                 </div>
               </div>
-              <p className="text-titanium-200 text-sm leading-relaxed">{selectedRecord.caption}</p>
+              <p className="text-slate-700 text-sm leading-relaxed">{selectedPhoto.description}</p>
             </div>
           </div>
         </div>
