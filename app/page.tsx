@@ -3,7 +3,7 @@ import Hero from '@/components/Hero';
 import PhilosophyExhibit from '@/components/PhilosophyExhibit';
 import WhoPlays from '@/components/WhoPlays';
 import ArenaBlueprint from '@/components/ArenaBlueprint';
-import HistoricalGallery from '@/components/HistoricalGallery';
+import InstagramGallery from '@/components/InstagramGallery';
 import CrewPassExhibition from '@/components/CrewPassExhibition';
 import TestimonialArchive from '@/components/TestimonialArchive';
 import FrontlineBridge from '@/components/FrontlineBridge';
@@ -18,7 +18,7 @@ export default function Home() {
         <PhilosophyExhibit />
         <WhoPlays />
         <ArenaBlueprint />
-        <HistoricalGallery />
+        <InstagramGallery />
         <CrewPassExhibition />
         <TestimonialArchive />
         <FrontlineBridge />

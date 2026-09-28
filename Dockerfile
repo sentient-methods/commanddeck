@@ -16,17 +16,20 @@ COPY . .
 EXPOSE 3000
 CMD ["npm", "run", "dev", "--", "-H", "0.0.0.0", "-p", "3000"]
 
-# Builder stage for production static export
+# Builder stage
 FROM base AS builder
 ENV NODE_ENV=production
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-# Production static preview server
-FROM node:20-alpine AS preview
+# Production server runner
+FROM base AS runner
+ENV NODE_ENV=production
 WORKDIR /app
-RUN npm install -g serve
-COPY --from=builder /app/out ./out
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
 EXPOSE 3000
-CMD ["serve", "-s", "out", "-l", "3000"]
+CMD ["npm", "start", "--", "-H", "0.0.0.0", "-p", "3000"]
